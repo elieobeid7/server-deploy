@@ -6,11 +6,10 @@ use warnings;
 use Exporter;
 our @ISA = 'Exporter';
 
-our @EXPORT = qw(@fileExt, @branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files);
-our (@fileExt, @branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files);
+our @EXPORT = qw(@branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files);
+our (@branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files);
 
-# the file extensions you wish to extract from git pull
-@fileExt = (".php", ".js", ".html",".css", ".ctp", ".txt", ".log");
+
 
 # list the branches you want to pull from and where would you want the files to be copied on the server
 # indicate if the branch is for production or not. Production repos can be logged and backed up

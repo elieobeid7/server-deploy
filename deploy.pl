@@ -5,7 +5,6 @@ use warnings;
 use File::Basename;
 use File::Copy;
 use File::Path qw(make_path);
-
 use Deploy::Module; 
 
 foreach my $repo (@repos) {
@@ -19,11 +18,11 @@ foreach my $repo (@repos) {
         my $pull = qx{git pull};
         my @output = split m/\r?\n/, $pull;
         if ($output[0] ne 'Already up-to-date.') {
-            foreach my $line (@output) {
+            my $git_dif_head_output =qx{git diff --name-only HEAD^1..HEAD};
+            my @diff_output = split m/\r?\n/, $git_dif_head_output;
+            foreach my $line (@diff_output) {
                     $line =~ s/\s+//g;
-                    my @git_files = split(/\|/, $line); # get files modified by git, save the info
                     my($filename, $directories, $suffix) = fileparse($git_files[0],qr"\..[^.]*$");
-                    if( $suffix ~~ @fileExt ){
                         my $server_dir = $item->{path} . $directories;
                         eval { make_path($server_dir) };
                         if ($@) {
@@ -31,9 +30,8 @@ foreach my $repo (@repos) {
                         }
                         my $filepath = $directories . $filename . $suffix;
                         copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
-                        }
+                        
                 }
         }
     }
-    qx{git checkout master}; # we are done, let's return to the master branch
  }
