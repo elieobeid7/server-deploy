@@ -6,8 +6,8 @@ use warnings;
 use Exporter;
 our @ISA = 'Exporter';
 
-our @EXPORT = qw(@branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files);
-our (@branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files);
+our @EXPORT = qw(@branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files, @delete_files);
+our (@branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files, @delete_files);
 
 
 
@@ -49,3 +49,8 @@ our (@branches, @repos, @backup, @backup_path, @log, @log_path, @backup_files);
 # the backup system is only intended to backup the files in the production repo
 
 @backup_files = ("myproject/index.php");
+
+# if delete_files = 1, files you delete from the git repo will be deleted from your server
+
+@delete_files = 0y
+

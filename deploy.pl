@@ -33,7 +33,12 @@ foreach my $repo (@repos) {
                         my $filepath = $directories . $filename . $suffix;
                         copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
             }
-                }
+            else if ($delete_files==1) {
+                my $filepath = $directories . $filename . $suffix;
+                unlink $filepath or warn $!;
+            }
+
+        }
         }
     }
  }
