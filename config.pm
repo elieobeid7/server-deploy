@@ -11,22 +11,15 @@ our @repos = (
 			{
                 branch_name => "stable",
                 copy_to_path => "/var/www/html/",
-                log => 1,
-                backup=>1.
-                delete_files => 0,
-                backup_files => [ 
-                    "index.php",
-                    "assets/css/main.css" 
-                ],
+                delete_files => 1,
+
                 ignore_files => [ 
                     ".gitignore"
-                ],
+                ]
             },
 			{ 
                 branch_name => "master",
                 copy_to_path => "/var/www/html/dev/", 
-                backup => 0,
-                log => 1,    
                 delete_files => 1
             }
 		]

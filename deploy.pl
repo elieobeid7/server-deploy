@@ -60,21 +60,3 @@ foreach my $repo (@repos) {
 }
 
 
-
-
-sub backup_and_log {
-    my ($backup,$backup_path,$log,$log_path,$filename) = @_;
-    if ($backup==1){
-        eval { make_path($server_dir) };
-        if ($@) {
-            print "Couldn't create $server_dir: $@";
-            }
-            my $filepath = $directories . $filename . $suffix;
-            copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
-            }
-    if ($log==1){
-
-    }
-
-}
-
