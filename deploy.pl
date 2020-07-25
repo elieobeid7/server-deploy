@@ -28,12 +28,12 @@ foreach my $repo (@repos) {
             my $git_dif_head_output =qx{git diff --name-only HEAD^1..HEAD};
             my @diff_output = split m/\r?\n/, $git_dif_head_output;
 
-            foreach my $output_line (@diff_output) {
+            foreach my @output_line (@diff_output) {
                 # remove white spaesl
-                    $output_line =~ s/\s+//g;
+                    @output_line =~ s/\s+//g;
 
                     # get correct paths
-                    my($filename, $directories, $suffix) = fileparse(my $output_line[0],qr"\..[^.]*$");
+                    my($filename, $directories, $suffix) = fileparse(@output_line[0],qr"\..[^.]*$");
                     my $git_file_path = $directories . $filename . $suffix;
                     
                     if (-e $git_file_path){ 
