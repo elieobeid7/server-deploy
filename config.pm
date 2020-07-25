@@ -13,12 +13,12 @@ our @repos = (
                 delete_files => 1,
                 ignore_files => [ 
                     ".gitignore"
-                ]
+                ],
             },
 			{ 
                 branch_name => "master",
                 copy_to_path => "/var/www/html/dev/", 
-                delete_files => 1
+                delete_files => 1,
             }
 		]
 	}
