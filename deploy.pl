@@ -10,9 +10,9 @@ our (@repos);
 our $filepath;
 
 foreach my $repo (@repos) {
-     # go to git repo 
+    # go to git repo 
     chdir($repo->{repo_path});
-my @branches = @{ $repo->{branches} };
+    my @branches = @{ $repo->{branches} };
 
     foreach my $item ( @branches ) {
         # checkout branch and pull
