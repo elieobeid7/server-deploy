@@ -19,7 +19,7 @@ foreach my $repo (@repos) {
         my $branch_name = 'git checkout ' . $item->{branch_name};
         qx{\$branch_name};
         my $pull = qx{git pull};
-
+        say 'pulled ' . $item->{branch_name};
         my @output = split m/\r?\n/, $pull;
         if ($output[0] ne 'Already up-to-date.') {
             
@@ -32,12 +32,15 @@ foreach my $repo (@repos) {
                 # remove white spaesl
                     $output_line =~ s/\s+//g;
 
-                    # get correct paths
+                    say 'get correct paths';
                     my($filename, $directories, $suffix) = fileparse($output_line,qr"\..[^.]*$");
                     my $git_file_path = $directories . $filename . $suffix;
                     
                     if (-e $git_file_path){ 
-                        # file was added or modified, check if the file in is ignored or should be copied.
+
+                        
+                        say 'file was added or modified, check if the file in is ignored or should be copied.';
+                        
                         if (!$item->{ignore_files} and not grep $_ eq $git_file_path, $item->{ignore_files} ){
                             my $server_dir = $item->{copy_to_path} . $directories;
 
@@ -46,6 +49,7 @@ foreach my $repo (@repos) {
                             print "Couldn't create $server_dir: $@";
                         }
                         $filepath = $directories . $filename . $suffix;
+                        say ' copying to ' . $filepath . $server_dir;
                         copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
                         }
 
@@ -55,6 +59,9 @@ foreach my $repo (@repos) {
                         unlink $filepath or warn $!;
             }
 
+        }
+        else {
+            say $item->{branch_name} . ' is up to date';
         }
         }
     }
