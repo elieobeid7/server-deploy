@@ -50,7 +50,7 @@ foreach my $repo (@repos) {
 
             }
                     else if ($delete_files==1) {
-                        my $filepath = $directories . $filename . $suffix;
+                        $filepath = $directories . $filename . $suffix;
                         unlink $filepath or warn $!;
             }
 
