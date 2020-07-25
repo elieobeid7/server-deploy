@@ -60,9 +60,9 @@ foreach my $repo (@repos) {
             }
 
         }
+        }
         else {
             print 'branch is up to date';
-        }
         }
     }
 }
