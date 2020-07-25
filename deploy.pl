@@ -49,7 +49,7 @@ foreach my $repo (@repos) {
                         }
 
             }
-                    elseif ($delete_files==1) {
+                    elsif ($delete_files==1) {
                         $filepath = $directories . $filename . $suffix;
                         unlink $filepath or warn $!;
             }
