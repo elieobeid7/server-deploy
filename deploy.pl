@@ -25,7 +25,7 @@ foreach my $repo (@repos) {
             
             # if the repo is not up to date, get the changed files as an array
 
-            my $git_dif_head_output =qx{git diff --name-only HEAD^1..HEAD};
+            my $git_dif_head_output = qx{git diff --name-only HEAD^1..HEAD};
             my @diff_output = split m/\r?\n/, $git_dif_head_output;
 
             foreach my $output_line (@diff_output) {
