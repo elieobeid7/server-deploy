@@ -33,7 +33,7 @@ foreach my $repo (@repos) {
                     $output_line =~ s/\s+//g;
 
                     # get correct paths
-                    my($filename, $directories, $suffix) = fileparse($output_line[0],qr"\..[^.]*$");
+                    my($filename, $directories, $suffix) = fileparse($output_line,qr"\..[^.]*$");
                     my $git_file_path = $directories . $filename . $suffix;
                     
                     if (-e $git_file_path){ 
