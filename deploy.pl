@@ -19,7 +19,7 @@ foreach my $repo (@repos) {
         my $branch_name = 'git checkout ' . $item->{branch_name};
         qx{\$branch_name};
         my $pull = qx{git pull};
-        say 'pulled ' . $item->{branch_name};
+        say  $item->{branch_name};
         my @output = split m/\r?\n/, $pull;
         if ($output[0] ne 'Already up-to-date.') {
             
@@ -61,7 +61,7 @@ foreach my $repo (@repos) {
 
         }
         else {
-            say $item->{branch_name} . ' is up to date';
+            print 'branch is up to date';
         }
         }
     }
