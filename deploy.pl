@@ -19,7 +19,7 @@ foreach my $repo (@repos) {
         my $branch_name = 'git checkout ' . $item->{branch_name};
         qx{\$branch_name};
         my $pull = qx{git pull};
-        say  $item->{branch_name};
+        print  $item->{branch_name};
         my @output = split m/\r?\n/, $pull;
         if ($output[0] ne 'Already up-to-date.') {
             
