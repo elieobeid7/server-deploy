@@ -27,7 +27,7 @@ foreach my $repo (@repos) {
 
             my $git_dif_head_output = qx{git diff --name-only HEAD^1..HEAD};
             my @diff_output = split m/\r?\n/, $git_dif_head_output;
-
+            print 'r';
             foreach my $output_line (@diff_output) {
                 # remove white spaesl
                     $output_line =~ s/\s+//g;
