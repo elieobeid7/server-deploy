@@ -7,6 +7,7 @@ use File::Copy;
 use File::Path qw(make_path);
 require "./config.pm";
 our (@repos); 
+our $filepath;
 
 foreach my $repo (@repos) {
      # go to git repo 
@@ -44,7 +45,7 @@ foreach my $repo (@repos) {
                         if ($@) {
                             print "Couldn't create $server_dir: $@";
                         }
-                        my $filepath = $directories . $filename . $suffix;
+                        $filepath = $directories . $filename . $suffix;
                         copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
                         }
 
