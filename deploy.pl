@@ -32,14 +32,14 @@ foreach my $repo (@repos) {
                 # remove white spaesl
                     $output_line =~ s/\s+//g;
 
-                    say 'get correct paths';
+                    print 'get correct paths';
                     my($filename, $directories, $suffix) = fileparse($output_line,qr"\..[^.]*$");
                     my $git_file_path = $directories . $filename . $suffix;
                     
                     if (-e $git_file_path){ 
 
                         
-                        say 'file was added or modified, check if the file in is ignored or should be copied.';
+                        print 'file was added or modified, check if the file in is ignored or should be copied.';
                         
                         if (!$item->{ignore_files} and not grep $_ eq $git_file_path, $item->{ignore_files} ){
                             my $server_dir = $item->{copy_to_path} . $directories;
@@ -49,7 +49,7 @@ foreach my $repo (@repos) {
                             print "Couldn't create $server_dir: $@";
                         }
                         $filepath = $directories . $filename . $suffix;
-                        say ' copying to ' . $filepath . $server_dir;
+                        print "copying to   $filepath . $server_dir";
                         copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
                         }
 
