@@ -41,7 +41,7 @@ foreach my $repo (@repos) {
                         
                         print 'file was added or modified, check if the file in is ignored or should be copied.';
                         
-                        if (not grep $_ eq $git_file_path, $item->{ignore_files} ){
+                        if (grep $_ ne $git_file_path, $item->{ignore_files} ){
                             my $server_dir = $item->{copy_to_path} . $directories;
                             print 'test';
 
