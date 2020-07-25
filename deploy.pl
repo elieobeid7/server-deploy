@@ -20,6 +20,7 @@ foreach my $repo (@repos) {
         qx{\$branch_name};
         my $pull = qx{git pull};
         my @output = split m/\r?\n/, $pull;
+        print $output[0];
         if ($output[0] ne 'Already up-to-date.') {
             
             # if the repo is not up to date, get the changed files as an array
