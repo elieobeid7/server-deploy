@@ -7,7 +7,7 @@ use File::Copy;
 use File::Path qw(make_path);
 require "./config.pm";
 our (@repos); 
-our $filepath;
+our $filepath = '';
 
 foreach my $repo (@repos) {
     # go to git repo 
