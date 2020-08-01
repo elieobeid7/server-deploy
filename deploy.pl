@@ -7,7 +7,6 @@ use File::Copy;
 use File::Path qw(make_path);
 require "./config.pm";
 our (@repos); 
-our $filepath = '';
 
 foreach my $repo (@repos) {
     # go to git repo 
@@ -49,14 +48,14 @@ foreach my $repo (@repos) {
                                 if ($@) {
                             print "Couldn't create $server_dir: $@";
                        # }
-                        $filepath = $directories . $filename . $suffix;
+                      my  $filepath = $directories . $filename . $suffix;
                         print "copying to   $filepath . $server_dir";
                         copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
                         }
 
             }
                     elsif ($item->{delete_files}==1) {
-                        $filepath = $directories . $filename . $suffix;
+                        my $filepath = $directories . $filename . $suffix;
                         unlink $filepath or warn $!;
             }
 
