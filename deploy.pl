@@ -15,7 +15,7 @@ foreach my $repo (@repos) {
 
     foreach my $item ( @branches ) {
         # checkout branch and pull
-        my $change_branch_command = 'git checkout ' . $item->{change_branch_command};
+        my $change_branch_command = 'git checkout ' . $item->{branch_name};
         qx{$change_branch_command};
         my $pull = qx{git pull};
         my @output = split m/\r?\n/, $pull;
