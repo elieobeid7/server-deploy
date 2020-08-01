@@ -26,7 +26,6 @@ foreach my $repo (@repos) {
 
             my $git_dif_head_output = qx{git diff --name-only HEAD^1..HEAD};
             my @diff_output = split m/\r?\n/, $git_dif_head_output;
-            print 'r';
             foreach my $output_line (@diff_output) {
                 # remove white spaesl
                     $output_line =~ s/\s+//g;
@@ -35,22 +34,16 @@ foreach my $repo (@repos) {
                     my($filename, $directories, $suffix) = fileparse($output_line,qr"\..[^.]*$");
                     my $git_file_path = $directories . $filename . $suffix;
                     
-                    if (-e $git_file_path){ 
-
-                        
-                        print 'file was added or modified, check if the file in is ignored or should be copied.';
-                        
-                        #if (not  grep $_ eq $git_file_path, $item->{ignore_files} ){
+                    if (-e $git_file_path){  
+                        if (not  grep $_ eq $git_file_path, $item->{ignore_files} ){
                             my $server_dir = $item->{copy_to_path} . $directories;
-                            print 'test';
-
                             eval { make_path($server_dir) };
-                                if ($@) {
-                            print "Couldn't create $server_dir: $@";
-                       # }
-                      my  $filepath = $directories . $filename . $suffix;
-                        print "copying to   $filepath . $server_dir";
-                        copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
+                            if ($@) {
+                                print "Couldn't create $server_dir: $@";
+                                }
+                            my  $filepath = $directories . $filename . $suffix;
+                            print "copying to   $filepath . $server_dir";
+                            copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
                         }
 
             }
