@@ -17,7 +17,7 @@ foreach my $repo (@repos) {
         # checkout branch and pull
         my $change_branch_command = 'git checkout ' . $item->{branch_name};
         qx{$change_branch_command};
-        my $pull = qx{git pull};
+        my $pull = qx{git reset --hard && git pull};
         my @output = split m/\r?\n/, $pull;
         print $output[0];
         if ($output[0] ne 'Already up-to-date.') {
