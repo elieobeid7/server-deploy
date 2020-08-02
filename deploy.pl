@@ -50,6 +50,7 @@ foreach my $repo (@repos) {
                     elsif ($item->{delete_files}==1) {
                         my $filepath = $directories . $filename . $suffix;
                         my $server_dir = $item->{copy_to_path} . $directories;
+                        print $server_dir . $filepath;
                         unlink $server_dir . $filepath or warn $!;
             }
 
