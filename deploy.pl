@@ -62,9 +62,3 @@ foreach my $repo (@repos) {
         }
     }
 }
-
-
-
-
-
-
