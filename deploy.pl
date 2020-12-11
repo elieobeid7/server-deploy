@@ -17,11 +17,12 @@ foreach my $repo (@repos) {
         # checkout branch and pull
         my $change_branch_command = 'git checkout ' . $item->{branch_name};
         qx{$change_branch_command};
-        my $pull = qx{git reset --hard && git pull};
+        my $pull = qx{git pull};
         my @output = split m/\r?\n/, $pull;
         print $output[0];
         if ($output[0] ne 'Already up-to-date.') {
-            
+            my $git_fetch = 'git fetch --all && git reset --hard origin/' . $item->{branch_name};
+            qx{$git_fetch};
             # if the repo is not up to date, get the changed files as an array
 
             my $git_dif_head_output = qx{git diff --name-only HEAD^1..HEAD};
