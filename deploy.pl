@@ -5,7 +5,7 @@ use warnings;
 use File::Basename;
 use File::Copy;
 use File::Path qw(make_path);
-require "./config.pm";
+require "config.pm";
 our (@repos); 
 
 foreach my $repo (@repos) {
