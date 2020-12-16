@@ -1,4 +1,5 @@
 #!/usr/bin/perl -l
+#Use of uninitialized value $_ in string eq at deploy.pl line 39.
 use Cwd;
 use strict;
 use warnings;
@@ -17,6 +18,7 @@ foreach my $repo (@repos) {
         # checkout branch and pull
         my $change_branch_command = 'git checkout ' . $item->{branch_name};
         qx{$change_branch_command};
+         qx{git clean -df && git reset --hard HEAD};
         my $pull = qx{git pull};
         my @output = split m/\r?\n/, $pull;
         print $output[0];
