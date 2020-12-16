@@ -1,5 +1,4 @@
 #!/usr/bin/perl -l
-#Use of uninitialized value $_ in string eq at deploy.pl line 39.
 use Cwd;
 use strict;
 use warnings;
