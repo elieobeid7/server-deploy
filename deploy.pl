@@ -37,7 +37,7 @@ foreach my $repo (@repos) {
                     my $git_file_path = $directories . $filename . $suffix;
                     
                     if (-e $git_file_path){  
-                        if (not  grep $_ eq $git_file_path, $item->{ignore_files} ){
+                        if (not grep $_ eq $git_file_path, @{ $item->{ignore_files} || [] }){
                             my $server_dir = $item->{copy_to_path} . $directories;
                             eval { make_path($server_dir) };
                             if ($@) {
