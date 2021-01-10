@@ -20,7 +20,7 @@ foreach my $repo (@repos) {
         qx{git stash -u && git reset --hard HEAD};
         my $pull = qx{git pull};
         my @output = split m/\r?\n/, $pull;
-        print $output[0];
+        # print $output[0];
         if ($output[0] ne 'Already up-to-date.') {
             my $git_fetch = 'git fetch --all && git reset --hard origin/' . $item->{branch_name};
             qx{$git_fetch};
@@ -44,7 +44,7 @@ foreach my $repo (@repos) {
                                 print "Couldn't create $server_dir: $@";
                                 }
                             my  $filepath = $directories . $filename . $suffix;
-                            print "copying to   $filepath . $server_dir";
+                            # print "copying to   $filepath . $server_dir";
                             copy($filepath, $server_dir) or die "Failed to copy $filepath: $!\n"; 
                         }
 
@@ -52,14 +52,14 @@ foreach my $repo (@repos) {
                     elsif ($item->{delete_files}==1) {
                         my $filepath =   $filename . $suffix;
                         my $server_dir = $item->{copy_to_path} . $directories;
-                        print $server_dir . $filepath;
+                        # print $server_dir . $filepath;
                         unlink $server_dir . $filepath or warn $!;
             }
 
         }
         }
-        else {
-            print 'branch is up to date';
-        }
+        #else {
+        # print 'branch is up to date';
+    # }
     }
 }
