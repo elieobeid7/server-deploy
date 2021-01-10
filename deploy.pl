@@ -29,10 +29,10 @@ foreach my $repo (@repos) {
             my $git_dif_head_output = qx{$git_diff};
             my @diff_output = split m/\r?\n/, $git_dif_head_output;
             foreach my $output_line (@diff_output) {
-                # remove white spaesl
+                # remove white spaces
                     $output_line =~ s/\s+//g;
 
-                    print 'get correct paths';
+                    #get correct paths
                     my($filename, $directories, $suffix) = fileparse($output_line,qr"\..[^.]*$");
                     my $git_file_path = $directories . $filename . $suffix;
                     
